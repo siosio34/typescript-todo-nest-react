@@ -1,4 +1,4 @@
-import {Get, Post, Body, Put, Delete, Query, Param, Controller} from '@nestjs/common';
+import {Get, Post, Body, Put, Delete, Query, Param, Controller, NotFoundException} from '@nestjs/common';
 import { TodoService } from './todo.service';
 
 @Controller('todo')
@@ -17,8 +17,19 @@ export class TodoController {
     }
     
     @Put()
-    async update(@Param('id') id, @Body('todo') updateTodo) {
-        return await this.todoService.update(id, updateTodo);
+    async update(@Param('id') id, @Body('todo') body) {
+        // return await this.todoService.update(id, updatedTodo);
+        
+        const todo = await this.todoService.findById(id);
+        
+        if(!todo) {
+            throw new NotFoundException();
+        }
+        
+        return await this.todoService.update({
+            ...todo,
+            ...body
+        })
     }
     
     @Delete()

@@ -30,6 +30,10 @@ export class TodoService {
         return { todos, count: todosCount };
     }
     
+    async findById(id: number): Promise<TodoEntity | null> {
+        return await this.todoRepository.findOne(id);
+    }
+    
     async create(todoData: CreateTodoDto): Promise<TodoEntity> {
         const newTodo = new TodoEntity();
         newTodo.title = todoData.title;

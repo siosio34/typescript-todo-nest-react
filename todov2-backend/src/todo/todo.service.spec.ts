@@ -54,18 +54,10 @@ describe('TodoService', () => {
   })
   
   it('findAlls todo', async () => {
-    const todos = await service.findAll({});
-    expect(typeof todos).toBe('object');
+    const result = await service.findAll({});
+    expect(result.todos).toBeInstanceOf(Array);
+    expect(typeof result.count).toBe('number');
   })
-   
-
-  // it('findAlls todo', async () => {
-  //   const todos = await service.findAll({ title: "wow" });
-  //   expect(todos).toEqual(expect.objectContaining({
-  //     todos: expect.any(TodoEntity[]),
-  //     count: expect.any(Number),
-  //   }))
-  // })
 
   afterAll(async done => {
     const connection = module.get<Connection>(getConnectionToken('default'));
