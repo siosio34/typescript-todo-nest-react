@@ -1,7 +1,14 @@
 import React from 'react';
 
-const TodoPage = () => (
-    <div>ㅇㅇㅇㅁㅇㅁㅇㅁ</div>
-    )
+class TodoPage extends React.Component {
     
+    render(){
+        return (
+            <div>TODO PAGE</div>
+            )
+    }
+}
+
+
+
 export default TodoPage;
