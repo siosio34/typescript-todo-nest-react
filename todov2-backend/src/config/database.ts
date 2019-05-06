@@ -9,4 +9,5 @@ export default {
   logging: process.env.DB_LOGGING === 'true',
   migrationsRun: process.env.DB_MIGRATIONS_RUN === 'true',
   migrationsDir: [process.env.DB_MIGRATIONS_DIR],
+  keepConnectionAlive: true,
 };
