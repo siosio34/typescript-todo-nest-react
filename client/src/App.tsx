@@ -1,17 +1,19 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { TodoPage } from 'pages/todo';
 
-const App: React.FC = () => {
+import store from './store';
+import { Provider } from 'react-redux';
+
+const App: React.SFC = () => {
   return (
-    <Router>
-        <Helmet>
-          <meta charSet="utf-8"/>
-          <title>Sample Todo</title>
-        </Helmet>
-        <Route exact path="/" component={TodoPage} />
-    </Router>
+    <Provider store={store} >
+      <Router>
+        <Switch>
+          <Route exact path="/" component={TodoPage} />
+        </Switch>
+     </Router>
+    </Provider>
   );
 }
 
